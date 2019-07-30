@@ -21,8 +21,18 @@ class SentenceGeneratorPage extends Component {
           location: [],
           punctation: [],
           genre: '',
+          download: '',
           loading: false
         };
+      }
+
+      downloadTxtFile = () => {
+        const element = document.createElement("a");
+        const file = new Blob([document.getElementById('myInput').value], {type: 'text/plain'});
+        element.href = URL.createObjectURL(file);
+        element.download = "WriteNowPrompt.txt";
+        document.body.appendChild(element); 
+        element.click();
       }
 
       handleChange = e => {
@@ -63,7 +73,8 @@ class SentenceGeneratorPage extends Component {
                   verb,
                   article: 'the',
                   punctation: '.',
-                  loading: false
+                  loading: false,
+                  download: 'Download prompt as TXT file'
               });
           }) 
 
@@ -80,7 +91,7 @@ class SentenceGeneratorPage extends Component {
 
           if (this.state.genre == 'horror') {
 
-            fetch('http://localhost:8000/words?type=sub-adj&genre=horror', options)
+            fetch('https://calm-hamlet-15286.herokuapp.com/words?type=sub-adj&genre=horror', options)
             .then(response => response.json())
             .then(data => {
                 let subadj = data[Math.floor(Math.random() * data.length)]
@@ -91,7 +102,7 @@ class SentenceGeneratorPage extends Component {
                 });
             }) 
 
-            fetch('http://localhost:8000/words?type=subject&genre=horror', options)
+            fetch('https://calm-hamlet-15286.herokuapp.com/words?type=subject&genre=horror', options)
             .then(response => response.json())
             .then(data => {
                 let sub = data[Math.floor(Math.random() * data.length)]
@@ -102,7 +113,7 @@ class SentenceGeneratorPage extends Component {
                 });
             })  
 
-            fetch('http://localhost:8000/words?type=loc-adj&genre=horror', options)
+            fetch('https://calm-hamlet-15286.herokuapp.com/words?type=loc-adj&genre=horror', options)
             .then(response => response.json())
             .then(data => {
                 let locadj = data[Math.floor(Math.random() * data.length)]
@@ -113,7 +124,7 @@ class SentenceGeneratorPage extends Component {
                 });
             }) 
 
-                fetch('http://localhost:8000/words?type=loc-adj&genre=horror', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=loc-adj&genre=horror', options)
             .then(response => response.json())
             .then(data => {
                 let locadj = data[Math.floor(Math.random() * data.length)]
@@ -124,7 +135,7 @@ class SentenceGeneratorPage extends Component {
                 });
             }) 
          
-            fetch('http://localhost:8000/words?type=location&genre=horror', options)
+            fetch('https://calm-hamlet-15286.herokuapp.com/words?type=location&genre=horror', options)
             .then(response => response.json())
             .then(data => {
                 let loc = data[Math.floor(Math.random() * data.length)]
@@ -201,7 +212,7 @@ class SentenceGeneratorPage extends Component {
             }
             if (this.state.genre == 'fantasy') {
 
-                fetch('http://localhost:8000/words?type=sub-adj&genre=fantasy', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=sub-adj&genre=fantasy', options)
                 .then(response => response.json())
                 .then(data => {
                     let subadj = data[Math.floor(Math.random() * data.length)]
@@ -212,7 +223,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
     
-                fetch('http://localhost:8000/words?type=subject&genre=fantasy', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=subject&genre=fantasy', options)
                 .then(response => response.json())
                 .then(data => {
                     let sub = data[Math.floor(Math.random() * data.length)]
@@ -223,7 +234,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 })  
     
-                fetch('http://localhost:8000/words?type=loc-adj&genre=fantasy', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=loc-adj&genre=fantasy', options)
                 .then(response => response.json())
                 .then(data => {
                     let locadj = data[Math.floor(Math.random() * data.length)]
@@ -234,7 +245,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
     
-                    fetch('http://localhost:8000/words?type=loc-adj&genre=fantasy', options)
+                    fetch('https://calm-hamlet-15286.herokuapp.com/words?type=loc-adj&genre=fantasy', options)
                 .then(response => response.json())
                 .then(data => {
                     let locadj = data[Math.floor(Math.random() * data.length)]
@@ -245,7 +256,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
              
-                fetch('http://localhost:8000/words?type=location&genre=fantasy', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=location&genre=fantasy', options)
                 .then(response => response.json())
                 .then(data => {
                     let loc = data[Math.floor(Math.random() * data.length)]
@@ -259,7 +270,7 @@ class SentenceGeneratorPage extends Component {
 
             if (this.state.genre == 'western') {
 
-                fetch('http://localhost:8000/words?type=sub-adj&genre=western', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=sub-adj&genre=western', options)
                 .then(response => response.json())
                 .then(data => {
                     let subadj = data[Math.floor(Math.random() * data.length)]
@@ -270,7 +281,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
     
-                fetch('http://localhost:8000/words?type=subject&genre=western', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=subject&genre=western', options)
                 .then(response => response.json())
                 .then(data => {
                     let sub = data[Math.floor(Math.random() * data.length)]
@@ -281,7 +292,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 })  
     
-                fetch('http://localhost:8000/words?type=loc-adj&genre=western', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=loc-adj&genre=western', options)
                 .then(response => response.json())
                 .then(data => {
                     let locadj = data[Math.floor(Math.random() * data.length)]
@@ -292,7 +303,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
     
-                    fetch('http://localhost:8000/words?type=loc-adj&genre=western', options)
+                    fetch('https://calm-hamlet-15286.herokuapp.com/words?type=loc-adj&genre=western', options)
                 .then(response => response.json())
                 .then(data => {
                     let locadj = data[Math.floor(Math.random() * data.length)]
@@ -303,7 +314,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
              
-                fetch('http://localhost:8000/words?type=location&genre=western', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=location&genre=western', options)
                 .then(response => response.json())
                 .then(data => {
                     let loc = data[Math.floor(Math.random() * data.length)]
@@ -317,7 +328,7 @@ class SentenceGeneratorPage extends Component {
 
             if (this.state.genre == 'genlit') {
 
-                fetch('http://localhost:8000/words?type=sub-adj&genre=lit', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=sub-adj&genre=lit', options)
                 .then(response => response.json())
                 .then(data => {
                     let subadj = data[Math.floor(Math.random() * data.length)]
@@ -328,7 +339,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
     
-                fetch('http://localhost:8000/words?type=subject&genre=lit', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=subject&genre=lit', options)
                 .then(response => response.json())
                 .then(data => {
                     let sub = data[Math.floor(Math.random() * data.length)]
@@ -339,7 +350,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 })  
     
-                fetch('http://localhost:8000/words?type=loc-adj&genre=lit', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=loc-adj&genre=lit', options)
                 .then(response => response.json())
                 .then(data => {
                     let locadj = data[Math.floor(Math.random() * data.length)]
@@ -350,7 +361,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
     
-                    fetch('http://localhost:8000/words?type=loc-adj&genre=lit', options)
+                    fetch('https://calm-hamlet-15286.herokuapp.com/words?type=loc-adj&genre=lit', options)
                 .then(response => response.json())
                 .then(data => {
                     let locadj = data[Math.floor(Math.random() * data.length)]
@@ -361,7 +372,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
              
-                fetch('http://localhost:8000/words?type=location&genre=lit', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=location&genre=lit', options)
                 .then(response => response.json())
                 .then(data => {
                     let loc = data[Math.floor(Math.random() * data.length)]
@@ -375,7 +386,7 @@ class SentenceGeneratorPage extends Component {
 
             if (this.state.genre == 'scifi') {
 
-                fetch('http://localhost:8000/words?type=sub-adj&genre=scifi', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=sub-adj&genre=scifi', options)
                 .then(response => response.json())
                 .then(data => {
                     let subadj = data[Math.floor(Math.random() * data.length)]
@@ -386,7 +397,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
     
-                fetch('http://localhost:8000/words?type=subject&genre=scifi', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=subject&genre=scifi', options)
                 .then(response => response.json())
                 .then(data => {
                     let sub = data[Math.floor(Math.random() * data.length)]
@@ -397,7 +408,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 })  
     
-                fetch('http://localhost:8000/words?type=loc-adj&genre=scifi', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=loc-adj&genre=scifi', options)
                 .then(response => response.json())
                 .then(data => {
                     let locadj = data[Math.floor(Math.random() * data.length)]
@@ -408,7 +419,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
     
-                    fetch('http://localhost:8000/words?type=loc-adj&genre=scifi', options)
+                    fetch('https://calm-hamlet-15286.herokuapp.com/words?type=loc-adj&genre=scifi', options)
                 .then(response => response.json())
                 .then(data => {
                     let locadj = data[Math.floor(Math.random() * data.length)]
@@ -419,7 +430,7 @@ class SentenceGeneratorPage extends Component {
                     });
                 }) 
              
-                fetch('http://localhost:8000/words?type=location&genre=scifi', options)
+                fetch('https://calm-hamlet-15286.herokuapp.com/words?type=location&genre=scifi', options)
                 .then(response => response.json())
                 .then(data => {
                     let loc = data[Math.floor(Math.random() * data.length)]
@@ -429,12 +440,24 @@ class SentenceGeneratorPage extends Component {
                         location
                     });
                 })              
-            }
+            }       
             
     }
 
     render() {
+        const firstArticle = this.state.firstArticle;
+        const subadj = this.state.subjectadjective; 
+        const sub = this.state.subject;
+        const verb = this.state.verb;
+        const prep = this.state.preposition; 
+        const art = this.state.article;
+        const locadj = this.state.locationadjective;
+        const loc = this.state.location;
+        const punct = this.state.punctation
+        const space = ' '
+
       return (
+          
         <div className='SentenceGenerator'>
             <header className='appHeader'>
                 <h3>
@@ -443,40 +466,40 @@ class SentenceGeneratorPage extends Component {
                 </h3>
             </header>
             <main> 
-                <div className ='radio'>
+                <div className ='radioform'>
                     <form>
                         <label>
-                            <input type="radio" value="scifi" name="scifi" 
+                            <input type="radio" className="radio" value="scifi" name="scifi" 
                                 checked={this.state.genre === 'scifi'}
                                 onChange={this.handleChange}/> 
                             Sci-Fi 
                         </label>
                         <label>
-                            <input type="radio" value="fantasy" name="fantasy" 
+                            <input type="radio" className="radio" value="fantasy" name="fantasy" 
                                 checked={this.state.genre === 'fantasy'}
                                 onChange={this.handleChange}/> 
                             Fantasy
                         </label>
                         <label>
-                            <input type="radio" value="horror" name="horror" 
+                            <input type="radio" className="radio" value="horror" name="horror" 
                                 checked={this.state.genre === 'horror'}
                                 onChange={this.handleChange}/> 
                             Horror
                         </label>
                         <label>
-                            <input type="radio" value="western" name="western" 
+                            <input type="radio" className="radio" value="western" name="western" 
                                 checked={this.state.genre === 'western'}
                                 onChange={this.handleChange}/> 
                             Western
                         </label>
                         <label>
-                            <input type="radio" value="genlit" name="genlit" 
+                            <input type="radio" className="radio" value="genlit" name="genlit" 
                             checked={this.state.genre === 'genlit'}
                             onChange={this.handleChange}/> 
                             General Lit
                         </label>
                         <label>
-                            <input type="radio" value="wildcard" name="wildcard" 
+                            <input type="radio" className="radio" value="wildcard" name="wildcard" 
                             checked={this.state.genre === 'wildcard'}
                             onChange={this.handleChange}/> 
                             Wild Card!
@@ -494,11 +517,18 @@ class SentenceGeneratorPage extends Component {
                         </button>  
                     </Link> 
                     {this.state.loading ? <h1>Loading...</h1>: null}
-                    <h3>{this.state.firstArticle} {this.state.subjectadjective} {this.state.subject} {this.state.verb} {this.state.preposition} {this.state.article} {this.state.locationadjective} {this.state.location}{this.state.punctation} </h3> 
+                    <h3 id="promptsentence">
+                        {this.state.firstArticle} {this.state.subjectadjective} {this.state.subject} {this.state.verb} {this.state.preposition} {this.state.article} {this.state.locationadjective} {this.state.location}{this.state.punctation}
+                    </h3>    
+                    <input id="myInput" value={firstArticle + space + subadj  + space + sub  + space + verb + space + prep  + space + art + space + locadj + space + loc + punct} />
+                     <button 
+                        onClick={this.downloadTxtFile}>
+                        {this.state.download}
+                    </button>
             </main>
        </div>
       );
     } 
   }
-  
+
   export default SentenceGeneratorPage;
